@@ -1,5 +1,6 @@
 import 'express-async-errors';
 import statusCodes from './statusCodes';
+import BookRoutes from './routes/book.routes';
 import express, { NextFunction, Request, Response } from 'express';
 
 const app = express();
@@ -11,6 +12,8 @@ const PORT = 8000;
 app.get('/', (_req: Request, res: Response) => {
     res.status(statusCodes.OK).send('Express + TypeScript')
 });
+
+app.use(BookRoutes);
 
 app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, details } = err as any;
